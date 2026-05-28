@@ -22,7 +22,10 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+<<<<<<< HEAD
     implementation 'org.springframework.boot:spring-boot-starter-web'
+=======
+>>>>>>> 00543b3b97931dbb19d8081fdd07da6d49d614f0
 }
 
 tasks.named('test') {
