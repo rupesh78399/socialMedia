@@ -2,6 +2,8 @@ package com.example.socialmedia;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "posts")
 public class Post {
@@ -10,6 +12,7 @@ public class Post {
     private Long id;
     private String content;
     private String userEmail;
+    private LocalDateTime createdAt;
 
     public Long getId() {
         return id;
@@ -29,5 +32,11 @@ public class Post {
 
     public void setUserEmail(String userEmail) {
         this.userEmail = userEmail;
+    }
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }
