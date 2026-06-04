@@ -37,8 +37,9 @@ public class AuthControl {
         return ResponseEntity.ok("Login successful");
     }
 
-    @GetMapping("/test")
-    public String test() {
-        return "Auth Controller Working";
+    @GetMapping("/users")
+    public Object getAllUser() {
+
+        return userRepository.findAll();
     }
 }
