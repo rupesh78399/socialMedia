@@ -15,7 +15,7 @@ public class PostController {
         return postRepository.save(post);
     }
 
-    @GetMapping
+    @GetMapping("/getPost")
     public Object getPosts() {
         return postRepository.findAll();
     }
