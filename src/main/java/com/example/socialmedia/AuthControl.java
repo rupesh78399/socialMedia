@@ -42,4 +42,10 @@ public class AuthControl {
 
         return userRepository.findAll();
     }
+
+    @DeleteMapping("/delete/{id}")
+    public String deleteUser(@PathVariable Long id) {
+        userRepository.deleteById(id);
+        return "Deleted";
+    }
 }
