@@ -39,7 +39,6 @@ public class AuthControl {
 
     @GetMapping("/users")
     public Object getAllUser() {
-
         return userRepository.findAll();
     }
 
