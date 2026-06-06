@@ -10,7 +10,8 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private int likes;
+    @Column(nullable = false)
+    private Integer likes = 0;
     private String imageUrl;
     private String content;
     private String userEmail;
