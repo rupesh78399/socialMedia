@@ -1,6 +1,7 @@
 package com.example.socialmedia;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -18,8 +19,25 @@ public class PostController {
         return postRepository.save(post);
     }
 
+    @PostMapping("/like/{id}")
+    public ResponseEntity<?> likePost(@PathVariable Long id){
+
+        Post post = postRepository.findById(id).orElse(null);
+
+        if(post == null){
+            return ResponseEntity.badRequest().body("Post not found");
+        }
+
+        post.setLikes(post.getLikes() + 1);
+
+        postRepository.save(post);
+
+        return ResponseEntity.ok(post);
+    }
+
     @GetMapping("/getPost")
     public Object getPosts() {
+
         return postRepository.findAll();
     }
 }
