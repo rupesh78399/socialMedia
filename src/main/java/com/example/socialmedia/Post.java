@@ -10,6 +10,7 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String userName;
     @Column(nullable = false)
     private Integer likes = 0;
     private String imageUrl;
@@ -61,5 +62,13 @@ public class Post {
 
     public void setLikes(int likes) {
         this.likes = likes;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }
