@@ -15,7 +15,7 @@ public class AuthControl {
     public ResponseEntity<?>  signUp(@RequestBody User user) {
 
         if(userRepository.findByEmail(user.getEmail()) != null){
-            return ResponseEntity.badRequest().body("Email already existss");
+            return ResponseEntity.badRequest().body("Email already exists");
         }
 
         return ResponseEntity.ok(userRepository.save(user));
