@@ -37,6 +37,20 @@ public class AuthControl {
         return ResponseEntity.ok("Login successful");
     }
 
+    @PutMapping("/profile-image/{email}")
+    public ResponseEntity<?> updateProfileImage(@PathVariable String email , @RequestBody User request){
+
+        User user = userRepository.findByEmail(email);
+
+        if(user == null){
+            return ResponseEntity.badRequest().body("User Not Found");
+        }
+
+        user.setName(request.getName());
+        userRepository.save(user);
+        return ResponseEntity.ok(user);
+    }
+
     @GetMapping("/users")
     public Object getAllUser() {
         return userRepository.findAll();
