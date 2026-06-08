@@ -37,7 +37,7 @@ public class AuthControl {
         return ResponseEntity.ok("Login successful");
     }
 
-    @PutMapping("/profile-image/{email}")
+    @PostMapping("/profile-image/{email}")
     public ResponseEntity<?> updateProfileImage(@PathVariable String email , @RequestBody User request){
 
         User user = userRepository.findByEmail(email);
