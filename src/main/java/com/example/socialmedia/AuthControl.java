@@ -51,6 +51,18 @@ public class AuthControl {
         return ResponseEntity.ok(user);
     }
 
+    @GetMapping("/user/{email}")
+    public ResponseEntity<?> getUser(@PathVariable String email){
+
+        User user = userRepository.findByEmail(email);
+
+        if(user == null){
+            return ResponseEntity.badRequest().body("User Not Found");
+        }
+
+        return ResponseEntity.ok(user);
+    }
+
     @GetMapping("/users")
     public Object getAllUser() {
         return userRepository.findAll();
