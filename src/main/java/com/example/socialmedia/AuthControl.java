@@ -46,7 +46,7 @@ public class AuthControl {
             return ResponseEntity.badRequest().body("User Not Found");
         }
 
-        user.setName(request.getName());
+        user.setName(request.getImage());
         userRepository.save(user);
         return ResponseEntity.ok(user);
     }
