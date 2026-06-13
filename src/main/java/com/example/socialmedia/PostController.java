@@ -1,10 +1,12 @@
 package com.example.socialmedia;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/posts")
@@ -42,10 +44,17 @@ public class PostController {
     }
 
     @DeleteMapping("/deletePost/{id}")
-    public ResponseEntity<?> deletePost(@PathVariable Long id){
+    public ResponseEntity<?> deletePost(@PathVariable Long id) {
 
-        Post post = postRepository.findById(id).orElse(null);
-        postRepository.deleteById(id);
-        return  ResponseEntity.ok(post);
+        Optional<Post> optionalPost = postRepository.findById(id);
+
+        if (optionalPost.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Post not found");
+        }
+
+        postRepository.delete(optionalPost.get());
+
+        return ResponseEntity.ok("Post deleted successfully");
     }
 }

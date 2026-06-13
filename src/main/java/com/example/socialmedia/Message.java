@@ -15,7 +15,7 @@ public class Message {
     private String senderEmail;
     private String receiverEmail;
     private String message;
-    private LocalDateTime timestamp;
+    private LocalDateTime createdAt;
     private boolean isRead;
 
     public Long getId() {
@@ -51,11 +51,11 @@ public class Message {
     }
 
     public LocalDateTime getTimestamp() {
-        return timestamp;
+        return createdAt;
     }
 
     public void setTimestamp(LocalDateTime timestamp) {
-        this.timestamp = timestamp;
+        this.createdAt = timestamp;
     }
 
     public boolean isRead() {
