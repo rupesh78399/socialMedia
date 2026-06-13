@@ -1,13 +1,11 @@
 package com.example.socialmedia;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "messages")
 public class Message {
 
     @Id
@@ -18,6 +16,7 @@ public class Message {
     private String receiverEmail;
     private String message;
     private LocalDateTime timestamp;
+    private boolean isRead;
 
     public Long getId() {
         return id;
@@ -57,5 +56,13 @@ public class Message {
 
     public void setTimestamp(LocalDateTime timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public boolean isRead() {
+        return isRead;
+    }
+
+    public void setRead(boolean read) {
+        isRead = read;
     }
 }
