@@ -40,4 +40,12 @@ public class PostController {
 
         return postRepository.findAll();
     }
+
+    @DeleteMapping("/deletePost/{id}")
+    public ResponseEntity<?> deletePost(@PathVariable Long id){
+
+        Post post = postRepository.findById(id).orElse(null);
+        postRepository.deleteById(id);
+        return  ResponseEntity.ok(post);
+    }
 }
