@@ -11,6 +11,9 @@ public class MessageController {
     @Autowired
     MessageService service;
 
+    @Autowired
+    MessageRepository messageRepository;
+
     @PostMapping("/send")
     public Message send(@RequestBody ChatMessage_Model request){
         return service.send(request);
@@ -20,5 +23,9 @@ public class MessageController {
     public List<Message> getChat(@RequestParam String user1, @RequestParam String user2){
 
         return service.getChat(user1,user2);
+    }
+    @GetMapping("/allMessages")
+    public List<Message> getAllMessages() {
+        return messageRepository.findAll();
     }
 }
