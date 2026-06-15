@@ -14,13 +14,15 @@ public class MessageService {
     @Autowired
     MessageRepository messageRepository;
 
-    public Message send(ChatMessage_Model model){
+    public Message send(Message model){
 
         Message message = new Message();
-        message.setSenderEmail(model.getSender());
-        message.setReceiverEmail((model.getReceiver()));
-        message.setMessage(model.getContent());
+
+        message.setSenderEmail(model.getSenderEmail());
+        message.setReceiverEmail(model.getReceiverEmail());
+        message.setMessage(model.getMessage());
         message.setTimestamp(LocalDateTime.now());
+        message.setRead(false);
 
         return messageRepository.save(message);
     }

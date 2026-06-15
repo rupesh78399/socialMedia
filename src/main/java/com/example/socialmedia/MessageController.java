@@ -10,12 +10,11 @@ public class MessageController {
 
     @Autowired
     MessageService service;
-
     @Autowired
     MessageRepository messageRepository;
 
     @PostMapping("/send")
-    public Message send(@RequestBody ChatMessage_Model request){
+    public Message send(@RequestBody Message request){
         return service.send(request);
     }
 
