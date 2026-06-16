@@ -83,6 +83,12 @@ public class AuthControl {
         userRepository.save(user);
     }
 
+    @GetMapping("/status")
+    public User getStatus(@RequestParam String email){
+
+        return userRepository.findByEmail(email);
+    }
+
     @GetMapping("/users")
     public Object getAllUser() {
 
