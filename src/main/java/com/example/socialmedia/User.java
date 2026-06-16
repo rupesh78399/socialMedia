@@ -2,6 +2,8 @@ package com.example.socialmedia;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -17,6 +19,8 @@ public class User {
     private String name;
     private String bio;
     private String image;
+    private boolean online;
+    private LocalDateTime lastSeen;
 
     public Long getId() {
         return id;
@@ -52,5 +56,29 @@ public class User {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public boolean isOnline() {
+        return online;
+    }
+
+    public void setOnline(boolean online) {
+        this.online = online;
+    }
+
+    public LocalDateTime getLastSeen() {
+        return lastSeen;
+    }
+
+    public void setLastSeen(LocalDateTime lastSeen) {
+        this.lastSeen = lastSeen;
     }
 }

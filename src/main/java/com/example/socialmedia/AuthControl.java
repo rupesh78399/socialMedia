@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+
 @RestController
 @RequestMapping("/auth")
 public class AuthControl {
@@ -61,6 +63,24 @@ public class AuthControl {
         }
 
         return ResponseEntity.ok(user);
+    }
+
+    @PostMapping("/online")
+    public void setOnline(@RequestParam String email){
+
+        User user = userRepository.findByEmail(email);
+        user.setOnline(true);
+        userRepository.save(user);
+
+    }
+
+    @PostMapping("/offline")
+    public void setOffline(@RequestParam String email){
+
+        User user = userRepository.findByEmail(email);
+        user.setOnline(false);
+        user.setLastSeen(LocalDateTime.now());
+        userRepository.save(user);
     }
 
     @GetMapping("/users")
