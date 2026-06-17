@@ -85,10 +85,10 @@ public class AuthControl {
 
         try {
             user.setOnline(false);
-            user.setLastSeen(LocalDateTime.now());
+            user.setLastSeen(LocalDateTime.now(ZoneId.of("Asia/Kolkata")));
 
             userRepository.save(user);
-
+            System.out.println("Saving Time = " + LocalDateTime.now(ZoneId.of("Asia/Kolkata")));
             return ResponseEntity.ok("Offline updated");
         } catch (Exception e){
             e.printStackTrace();
