@@ -76,12 +76,24 @@ public class AuthControl {
     }
 
     @PostMapping("/offline")
-    public void setOffline(@RequestParam String email){
+    public ResponseEntity<?>  setOffline(@RequestParam String email){
 
         User user = userRepository.findByEmail(email);
-        user.setOnline(false);
-        user.setLastSeen(LocalDateTime.now(ZoneId.of("Asia/kolkata")));
-        userRepository.save(user);
+        if(user == null){
+            return ResponseEntity.badRequest().body("User not found");
+        }
+
+        try {
+            user.setOnline(false);
+            user.setLastSeen(LocalDateTime.now());
+
+            userRepository.save(user);
+
+            return ResponseEntity.ok("Offline updated");
+        } catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.internalServerError().body(e.getMessage());
+        }
     }
 
     @GetMapping("/status")
