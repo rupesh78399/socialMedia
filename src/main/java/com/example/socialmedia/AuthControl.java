@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 @RestController
 @RequestMapping("/auth")
@@ -79,7 +80,7 @@ public class AuthControl {
 
         User user = userRepository.findByEmail(email);
         user.setOnline(false);
-        user.setLastSeen(LocalDateTime.now());
+        user.setLastSeen(LocalDateTime.now(ZoneId.of("Asia/kolkata")));
         userRepository.save(user);
     }
 
