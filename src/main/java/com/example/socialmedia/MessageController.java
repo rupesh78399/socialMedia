@@ -27,4 +27,21 @@ public class MessageController {
     public List<Message> getAllMessages() {
         return messageRepository.findAll();
     }
+
+    @PutMapping("/read")
+    public void markAsRead(@RequestParam String sender , @RequestParam String receiver){
+
+        List<Message> messages = messageRepository.findUnreadMessages(sender , receiver);
+
+        for(Message m : messages){
+            m.setRead(true);
+        }
+        messageRepository.saveAll(messages);
+    }
+
+    @GetMapping("/unreadCount")
+    public Long getUnreadCount(@RequestParam String sender , @RequestParam String receiver){
+
+        return messageRepository.countUnreadMessage(sender , receiver);
+    }
 }

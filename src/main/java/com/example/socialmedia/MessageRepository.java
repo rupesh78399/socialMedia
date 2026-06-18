@@ -20,6 +20,24 @@ public interface MessageRepository extends JpaRepository<Message , Long> {
             @Param("user2") String user2
     );
 
+    @Query("""
+        SELECT m
+        FROM Message m
+        WHERE m.senderEmail = :sender
+        AND m.receiverEmail = :receiver
+        AND m.isRead = false
+        """)
+    List<Message> findUnreadMessages(String sender , String receiver);
+
+    @Query("""
+        SELECT COUNT(m)
+        FROM Message m
+        WHERE m.senderEmail = :sender
+        AND m.receiverEmail = :receiver
+        AND m.isRead = false
+        """)
+    Long countUnreadMessage(String sender , String receiver);
+
     List<Message> findBySenderEmailAndReceiverEmail(String sender, String receiver);
     List<Message> findByReceiverEmail(String receiver);
 }
