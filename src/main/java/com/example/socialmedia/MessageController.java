@@ -15,6 +15,7 @@ public class MessageController {
 
     @PostMapping("/send")
     public Message send(@RequestBody Message request){
+
         return service.send(request);
     }
 
@@ -23,7 +24,7 @@ public class MessageController {
 
         return service.getChat(user1,user2);
     }
-    @GetMapping("/allMessages")
+    @GetMapping("/allMessage")
     public List<Message> getAllMessages() {
         return messageRepository.findAll();
     }
