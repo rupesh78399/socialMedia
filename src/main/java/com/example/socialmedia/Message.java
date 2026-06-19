@@ -17,7 +17,7 @@ public class Message {
     private String message;
     private LocalDateTime createdAt;
 
-    @Column(name = "is_read")
+    @Column(name = "isRead")
     private boolean isRead;
 
     public Long getId() {
