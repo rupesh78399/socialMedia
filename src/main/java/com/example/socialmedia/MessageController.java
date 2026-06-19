@@ -1,6 +1,7 @@
 package com.example.socialmedia;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -38,6 +39,12 @@ public class MessageController {
             m.setRead(true);
         }
         messageRepository.saveAll(messages);
+    }
+
+    @DeleteMapping("/deleteMessage/{id}")
+    public void deleteMessage(@PathVariable Long id){
+
+        messageRepository.deleteById(id);
     }
 
     @GetMapping("/unreadCount")
