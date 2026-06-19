@@ -16,6 +16,8 @@ public class Message {
     private String receiverEmail;
     private String message;
     private LocalDateTime createdAt;
+
+    @Column(name = "is_read")
     private boolean isRead;
 
     public Long getId() {
