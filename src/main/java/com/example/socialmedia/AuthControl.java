@@ -79,6 +79,14 @@ public class AuthControl {
 
     }
 
+    @PutMapping("/saveToken")
+    public User saveToken(@RequestParam String email , @RequestParam String token){
+
+        User user = userRepository.findByEmail(email);
+        user.setFcmToken(token);
+        return userRepository.save(user);
+    }
+
     @PostMapping("/offline")
     public ResponseEntity<?>  setOffline(@RequestParam String email){
 

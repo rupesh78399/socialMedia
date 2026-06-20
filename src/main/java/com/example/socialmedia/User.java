@@ -22,6 +22,7 @@ public class User {
     private boolean online;
     private Long unreadCount;
     private LocalDateTime lastSeen;
+    private String fcmToken;
 
     public Long getId() {
         return id;
@@ -89,5 +90,13 @@ public class User {
 
     public void setUnreadCount(Long unreadCount) {
         this.unreadCount = unreadCount;
+    }
+
+    public String getFcmToken() {
+        return fcmToken;
+    }
+
+    public void setFcmToken(String fcmToken) {
+        this.fcmToken = fcmToken;
     }
 }
