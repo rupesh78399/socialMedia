@@ -20,6 +20,7 @@ public class User {
     private String bio;
     private String image;
     private boolean online;
+    private Long unreadCount;
     private LocalDateTime lastSeen;
 
     public Long getId() {
@@ -80,5 +81,13 @@ public class User {
 
     public void setLastSeen(LocalDateTime lastSeen) {
         this.lastSeen = lastSeen;
+    }
+
+    public Long getUnreadCount() {
+        return unreadCount;
+    }
+
+    public void setUnreadCount(Long unreadCount) {
+        this.unreadCount = unreadCount;
     }
 }

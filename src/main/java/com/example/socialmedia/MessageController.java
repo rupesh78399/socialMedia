@@ -43,7 +43,6 @@ public class MessageController {
 
     @DeleteMapping("/deleteMessage/{id}")
     public void deleteMessage(@PathVariable Long id){
-
         messageRepository.deleteById(id);
     }
 

@@ -15,6 +15,9 @@ public class AuthControl {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private MessageRepository messageRepository;
+
     @PostMapping("/signup")
     public ResponseEntity<?>  signUp(@RequestBody User user) {
 
@@ -104,9 +107,18 @@ public class AuthControl {
     }
 
     @GetMapping("/users")
-    public Object getAllUser() {
+    public List<User> getAllUser(@RequestParam String currentUserEmail) {
 
-        return userRepository.findAll();
+        List<User> users = userRepository.findAll();
+        users.removeIf(user -> user.getEmail().equals(currentUserEmail));
+
+        for(User user : users){
+
+            Long unreadCount = messageRepository.countUnreadMessage(user.getEmail() , currentUserEmail);
+            user.setUnreadCount(unreadCount);
+
+        }
+        return users;
     }
 
     @DeleteMapping("/delete/{id}")
