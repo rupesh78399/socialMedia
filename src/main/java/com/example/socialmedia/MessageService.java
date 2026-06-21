@@ -14,6 +14,12 @@ public class MessageService {
     @Autowired
     MessageRepository messageRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private NotificationService notificationService;
+
     public Message send(Message model){
 
         Message message = new Message();
@@ -24,6 +30,13 @@ public class MessageService {
         message.setTimestamp(LocalDateTime.now());
         message.setRead(false);
 
+        Message savedMessage = messageRepository.save(message);
+
+        User receiver = userRepository.findByEmail(model.getReceiverEmail());
+
+        if(receiver != null && receiver.getFcmToken() != null){
+            notificationService.sendNotification(receiver.getFcmToken() , model.getSenderEmail() , model.getMessage());
+        }
         return messageRepository.save(message);
     }
 
