@@ -35,6 +35,8 @@ public class MessageService {
         User receiver = userRepository.findByEmail(model.getReceiverEmail());
 
         if(receiver != null && receiver.getFcmToken() != null){
+            System.out.println("Receiver = " + receiver.getEmail());
+            System.out.println("Token = " + receiver.getFcmToken());
             notificationService.sendNotification(receiver.getFcmToken() , model.getSenderEmail() , model.getMessage());
         }
         return messageRepository.save(message);
