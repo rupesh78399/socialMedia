@@ -6,6 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -14,6 +16,9 @@ public class PostController {
 
     @Autowired
     private PostRepository postRepository;
+
+    @Autowired
+    private CommentRepository commentRepository;
 
     @PostMapping("/create")
     public Post createPost(@RequestBody Post post) {
@@ -35,6 +40,20 @@ public class PostController {
         postRepository.save(post);
 
         return ResponseEntity.ok(post);
+    }
+
+    @PostMapping("/comment")
+    public ResponseEntity<?> commentPost(@RequestBody Comment comment){
+
+        comment.setCreatedAt(LocalDateTime.now(ZoneId.of("Asia/Kolkata")));
+        return ResponseEntity.ok(commentRepository.save(comment));
+    }
+
+    @GetMapping("/comments/{postId}")
+    public List<Comment> getComments(@PathVariable Long postId){
+
+        return commentRepository.findByPostIdOrderByCreatedAtDesc(postId);
+
     }
 
     @GetMapping("/getPost")
