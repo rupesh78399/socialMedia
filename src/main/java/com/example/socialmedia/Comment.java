@@ -14,7 +14,7 @@ public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long PosId;
+    private Long postId;
     private String userEmail;
     private String userName;
     private String comment;
@@ -29,11 +29,11 @@ public class Comment {
     }
 
     public Long getPosId() {
-        return PosId;
+        return postId;
     }
 
-    public void setPosId(Long posId) {
-        PosId = posId;
+    public void setPosId(Long postId) {
+        postId = postId;
     }
 
     public String getUserEmail() {
