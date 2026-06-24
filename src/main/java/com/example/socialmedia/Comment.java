@@ -28,24 +28,24 @@ public class Comment {
         this.id = id;
     }
 
-    public Long getPosId() {
-        return postId;
-    }
-
-    public void setPosId(Long postId) {
-        postId = postId;
-    }
-
-    public String getUserEmail() {
-        return userEmail;
-    }
-
     public void setUserEmail(String userEmail) {
         this.userEmail = userEmail;
     }
 
     public String getUserName() {
         return userName;
+    }
+
+    public Long getPostId() {
+        return postId;
+    }
+
+    public void setPostId(Long postId) {
+        this.postId = postId;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
     }
 
     public void setUserName(String userName) {

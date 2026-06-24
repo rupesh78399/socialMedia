@@ -46,6 +46,8 @@ public class PostController {
     public ResponseEntity<?> commentPost(@RequestBody Comment comment){
 
         comment.setCreatedAt(LocalDateTime.now(ZoneId.of("Asia/Kolkata")));
+        System.out.println("PostId = " + comment.getPostId());
+        System.out.println("Comment = " + comment.getComment());
         return ResponseEntity.ok(commentRepository.save(comment));
     }
 
