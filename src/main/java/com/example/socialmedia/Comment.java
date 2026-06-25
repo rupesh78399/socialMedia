@@ -17,6 +17,7 @@ public class Comment {
     private Long postId;
     private String userEmail;
     private String userName;
+    private String imageUrl;
     private String comment;
     private LocalDateTime createdAt;
 
@@ -26,6 +27,14 @@ public class Comment {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public void setUserEmail(String userEmail) {

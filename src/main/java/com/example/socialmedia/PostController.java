@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +20,9 @@ public class PostController {
 
     @Autowired
     private CommentRepository commentRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @PostMapping("/create")
     public Post createPost(@RequestBody Post post) {
@@ -52,10 +56,26 @@ public class PostController {
     }
 
     @GetMapping("/comments/{postId}")
-    public List<Comment> getComments(@PathVariable Long postId){
+    public List<CommentResponse> getComments(@PathVariable Long postId){
 
-        return commentRepository.findByPostIdOrderByCreatedAtDesc(postId);
+        List<Comment> comments = commentRepository.findByPostIdOrderByCreatedAtDesc(postId);
 
+        List<CommentResponse> responses = new ArrayList<>();
+        for(Comment comment : comments){
+            User user = userRepository.findByEmail(comment.getUserEmail());
+
+            CommentResponse dto = new CommentResponse();
+            dto.setId(comment.getId());
+            dto.setPostId(comment.getPostId());
+            dto.setUserEmail(comment.getUserEmail());
+            dto.setUserName(user.getName());
+            dto.setImageUrl(user.getImage());
+            dto.setComment(comment.getComment());
+            dto.setCreatedAt(comment.getCreatedAt());
+
+            responses.add(dto);
+        }
+        return responses;
     }
 
     @GetMapping("/getPost")
