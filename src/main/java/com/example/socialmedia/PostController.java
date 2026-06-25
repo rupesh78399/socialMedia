@@ -68,10 +68,12 @@ public class PostController {
             dto.setId(comment.getId());
             dto.setPostId(comment.getPostId());
             dto.setUserEmail(comment.getUserEmail());
-            dto.setUserName(user.getName());
             dto.setImageUrl(user.getImage());
             dto.setComment(comment.getComment());
             dto.setCreatedAt(comment.getCreatedAt());
+
+            System.out.println("Email = " + comment.getUserEmail());
+            System.out.println("User = " + user);
 
             responses.add(dto);
         }
