@@ -57,6 +57,7 @@ public class PostController {
 
     @GetMapping("/comments/{postId}")
     public List<CommentResponse> getComments(@PathVariable Long postId){
+        System.out.println("Controller started");
 
         List<Comment> comments = commentRepository.findByPostIdOrderByCreatedAtDesc(postId);
 
