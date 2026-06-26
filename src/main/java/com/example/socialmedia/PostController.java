@@ -56,28 +56,43 @@ public class PostController {
     }
 
     @GetMapping("/comments/{postId}")
-    public List<CommentResponse> getComments(@PathVariable Long postId){
-        System.out.println("Controller started");
+    public List<CommentResponse> getComments(@PathVariable Long postId) {
+
+        System.out.println("Step 1");
 
         List<Comment> comments = commentRepository.findByPostIdOrderByCreatedAtDesc(postId);
 
+        System.out.println("Step 2 : " + comments.size());
+
         List<CommentResponse> responses = new ArrayList<>();
-        for(Comment comment : comments){
+
+        for (Comment comment : comments) {
+
+            System.out.println("Step 3");
+
             User user = userRepository.findByEmail(comment.getUserEmail());
 
+            System.out.println("Step 4 : " + user);
+
             CommentResponse dto = new CommentResponse();
+
             dto.setId(comment.getId());
             dto.setPostId(comment.getPostId());
             dto.setUserEmail(comment.getUserEmail());
-            dto.setImageUrl(user.getImage());
+
+            if (user != null) {
+                dto.setUserName(user.getName());
+                dto.setImageUrl(user.getImage());
+            }
+
             dto.setComment(comment.getComment());
             dto.setCreatedAt(comment.getCreatedAt());
 
-            System.out.println("Email = " + comment.getUserEmail());
-            System.out.println("User = " + user);
-
             responses.add(dto);
         }
+
+        System.out.println("Step 5");
+
         return responses;
     }
 
