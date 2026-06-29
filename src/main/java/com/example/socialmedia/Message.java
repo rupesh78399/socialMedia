@@ -15,6 +15,8 @@ public class Message {
     private String senderEmail;
     private String receiverEmail;
     private String message;
+    private String messageType;
+    private String mediaUrl;
     private LocalDateTime createdAt;
 
     @Column(name = "is_read")
@@ -66,5 +68,17 @@ public class Message {
 
     public void setRead(boolean read) {
         isRead = read;
+    }
+    public String getMessageType() {
+        return messageType;
+    }
+    public void setMessageType(String messageType) {
+        this.messageType = messageType;
+    }
+    public String getMediaUrl() {
+        return mediaUrl;
+    }
+    public void setMediaUrl(String mediaUrl) {
+        this.mediaUrl = mediaUrl;
     }
 }
