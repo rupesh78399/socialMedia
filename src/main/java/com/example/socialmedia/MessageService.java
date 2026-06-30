@@ -28,9 +28,9 @@ public class MessageService {
         message.setReceiverEmail(model.getReceiverEmail());
         message.setMessage(model.getMessage());
         message.setTimestamp(LocalDateTime.now());
+        message.setMessageType(model.getMessageType());
+        message.setMediaUrl(model.getMediaUrl());
         message.setRead(false);
-
-        Message savedMessage = messageRepository.save(message);
 
         User receiver = userRepository.findByEmail(model.getReceiverEmail());
 
