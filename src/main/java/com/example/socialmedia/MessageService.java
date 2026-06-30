@@ -37,7 +37,19 @@ public class MessageService {
         if(receiver != null && receiver.getFcmToken() != null){
             System.out.println("Receiver = " + receiver.getEmail());
             System.out.println("Token = " + receiver.getFcmToken());
-            notificationService.sendNotification(receiver.getFcmToken() , model.getSenderEmail() , model.getMessage());
+            String notificationBody;
+
+            if ("IMAGE".equals(model.getMessageType())) {
+                notificationBody = "📷 Photo";
+            } else {
+                notificationBody = model.getMessage();
+            }
+
+            notificationService.sendNotification(
+                    receiver.getFcmToken(),
+                    model.getSenderEmail(),
+                    notificationBody
+            );
         }
         return messageRepository.save(message);
     }
